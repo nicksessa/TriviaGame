@@ -14,9 +14,7 @@
     /*border-style: solid;
     border-color: green;
     border-width: 2px;*/
-    background-image:  url("https://www.toptal.com/designers/subtlepatterns/patterns/vintage-
-
-concrete.png");
+    background-image:url("https://www.toptal.com/designers/subtlepatterns/patterns/vintage-concrete.png");
     border-radius: 4px;
     padding: 20px;
     box-shadow: 10px 10px 5px black, -1px 0px 10px black;
@@ -124,6 +122,38 @@ td {
 	  display:none;
 }
 
+.button {
+  /*background-color: #4CAF50; /* Green */
+  background-color: #279;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  border-radius:5px;
+}
+
+
+.button:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+#myStart {
+	margin-top: 20%;
+    margin-left: 45%;
+    
+}
+
+#container {
+	display: none;
+}
 
 /*SFS light red = #c30b0a;
 SFS dark red = #9f2026; */
@@ -135,7 +165,12 @@ SFS dark red = #9f2026; */
 </head>
 <body>
 <h2 class="quizHeader">Take a Quiz!</h2>
-  <div class="centered">
+
+<div id="myStart">
+  <button class="button" onclick="myFunction()">Start</button>
+</div>
+
+  <div id="container" class="centered">
   
 	<table style="width:583px">
 	<tr>
@@ -242,6 +277,20 @@ SFS dark red = #9f2026; */
 
 <script type="text/javascript">
 // scripts here:
+
+function myFunction() {
+  var x = document.getElementById("myStart");
+  var y = document.getElementById("container");
+  
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+  }
+}
+
 
 function submitQuiz() {
   console.log('submitted');
