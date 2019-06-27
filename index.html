@@ -29,13 +29,14 @@ h1{
 }
 .question{
     font-weight: 600;
-  font-size: 30px;
+  font-size: 20px;
   margin-bottom: 10px;
 }
 .answers {
   margin-bottom: 20px;
   margin-left: 40px;
   text-align: left;
+  font-size: 15px;
   display: inline-block;
 }
 .answers label{
@@ -53,6 +54,8 @@ button{
     padding: 20px;
     cursor: pointer;
     margin-bottom: 20px;
+//display: inline-block;
+//float: left;
 box-shadow: 4px 4px 2px gray, -1px 0px 5px gray;
 }
 button:hover{
@@ -84,6 +87,19 @@ button:hover{
   display: none;
 }
 
+#submit {
+  //float: left;
+
+}
+
+#reset {
+
+
+  //margin-left: 40px;
+  margin-right: 20px;
+  display: none;
+}
+
 </style>
 
 
@@ -101,9 +117,11 @@ button:hover{
 <div id="container">
   <div id="centered">
     <div id="theTimer"><h1>Time Remaining: 30</h1></div>
-    <div id="quiz"></div>
-    <button id="submit">Submit Quiz</button>
-    <div id="results"></div>
+    <div id="quiz">    </div>
+      <button id="submit">Submit Quiz</button>
+      <button id="reset">Try Again?</button>
+      <div id="results"></div>
+
   </div>
 </div>
 
@@ -113,40 +131,34 @@ button:hover{
 
 
 
-// start the timer
-//  Set our number counter to 30.
+
+//  Set our number counter to 30 for the timer.
 var number = 30;
 var intervalId;
 
-function run() {
+function runTimer() {
   clearInterval(intervalId);
   intervalId = setInterval(decrement, 1000);
 }
 
-//  The decrement function.
 function decrement() {
   //  Decrease number by one.
   number--;
 
-  //  Show the number in the #show-number tag.
   $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
-  //  Once number hits zero...
+
   if (number === 0) {
-    //  ...run the stop function.
-    stop();
-    //  Alert the user that time is up.
+    stopTimer();
     alert("Time is Up!");
+    showResults();
   }
 }
 
-//  The stop function
-function stop() {
+function stopTimer() {
   //  Clears our intervalId
-  //  We just pass the name of the interval
-  //  to the clearInterval function.
+  //  We just pass the name of the interval to the clearInterval function.
   clearInterval(intervalId);
-  // Show the results when the timer ends
-  showResults();
+ 
 }
 
 
@@ -156,21 +168,28 @@ function startGame() {
   var x = document.getElementById("myStart");
   var y = document.getElementById("container");
   var z = document.getElementById("centered");
+  var r = document.getElementById("reset");
   
+  // I'm keeping this if statement in case I try to reset the game with a button.
+
   if (x.style.display === "none") {
     x.style.display = "block";
     y.style.display = "none";
     z.style.display = "none";
+    r.style.display = "none";
+
+
+    submit.disabled = false;
+    submit.style.backgroundColor = "#279";
+    submit.style.color = "#fff";
+
   } else {
     x.style.display = "none";
     y.style.display = "block";
     z.style.display = "block";
   }
 
-
-
-
-  run();
+  runTimer();
 
 }
 
@@ -178,12 +197,61 @@ function startGame() {
 const quizContainer = document.getElementById('quiz');
 const resultsContainer = document.getElementById('results');
 const submitButton = document.getElementById('submit');
-
+const resetButton = document.getElementById('reset');
 
 
 // on submit, show results
 submitButton.addEventListener('click', showResults);
 
+// on reset, build the page
+resetButton.addEventListener('click', resetPage);
+
+
+function resetPage() {
+  number = 30;
+
+  // loop through the questions to get the question number
+  // then use that to build the questions string, ie: question0  question1, question2
+  // then use that string to search for those named elements
+  // then use those elements to set the color of their parent elements, which should be labels
+
+  myQuestions.forEach((currentQuestion, questionNumber) => {
+    var qName = "question" + questionNumber
+    var radiosNo = document.getElementsByName(qName);
+
+    for (var i = 0, length = radiosNo.length; i < length; i++) {
+      	radiosNo[i].parentElement.style.color = "black";
+        radiosNo[i].checked = false;
+    }
+  });
+
+  resultsContainer.innerHTML = "";
+
+
+
+  var x = document.getElementById("myStart");
+  var y = document.getElementById("container");
+  var z = document.getElementById("centered");
+  var r = document.getElementById("reset");
+
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+    r.style.display = "none";
+
+
+    submit.disabled = false;
+    submit.style.backgroundColor = "#279";
+    submit.style.color = "#fff";
+
+
+
+
+
+
+
+  //startGame();
+}
 
 // Build an object of objects (and data) to hold the questions and answers
 
@@ -229,7 +297,7 @@ function buildQuiz(){
 
 function myFunction(item, index) {
 
-  // this array stores all the answers in html format
+  // this array is used to store all the answers in html format
   const answers = [];
 
   // 1. Loop through all the answers in the current question (item).
@@ -373,8 +441,15 @@ resultsContainer.innerHTML = `Results: ${numCorrect} out of ${myQuestions.length
   });
 
 // stop the timer
-stop();
+stopTimer();
 
+// disable the submit button
+submit.disabled = true;
+submit.style.backgroundColor = "#38a";
+submit.style.color = "lightgray";
+
+var x = document.getElementById("reset");
+x.style.display = "block";
 
 };
 
