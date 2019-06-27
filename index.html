@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Trivia Game</title>
+<title>Star Wars Trivia Game</title>
 
 <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -59,15 +59,19 @@ button:hover{
     background-color: #38a;
 }
 
-
-
-.quiz-container{
+#container{
   position: relative;
   height: 200px;
   margin-top: 40px;
+  display: none;
 }
 
-.centered{
+#myStart {
+  margin-top: 20%;
+  margin-left: 45%;
+}
+
+#centered {
     margin: 20px auto;
     width: 900px;
     /*border-style: solid;
@@ -77,9 +81,8 @@ button:hover{
     border-radius: 4px;
     padding: 20px;
     box-shadow: 10px 10px 5px black, -1px 0px 10px black;
+  display: none;
 }
-
-
 
 </style>
 
@@ -89,18 +92,78 @@ button:hover{
 <body>
 
 <h1>Star Wars Trivia</h1>
-<div class="quiz-container">
-<div class="centered">
-  <div id="quiz"></div>
 
 
-<button id="submit">Submit Quiz</button>
-<div id="results"></div>
-
+<div id="myStart">
+  <button class="button" onclick="startGame()">Start</button>
 </div>
+
+<div id="container">
+  <div id="centered">
+    <div id="theTimer"><h1>Time Remaining: </h1></div>
+    <div id="quiz"></div>
+    <button id="submit">Submit Quiz</button>
+    <div id="results"></div>
+  </div>
 </div>
+
+
 
 <script type="text/javascript">
+
+
+function startGame() {
+  var x = document.getElementById("myStart");
+  var y = document.getElementById("container");
+  var z = document.getElementById("centered");
+  
+  if (x.style.display === "none") {
+    x.style.display = "block";
+    y.style.display = "none";
+    z.style.display = "none";
+  } else {
+    x.style.display = "none";
+    y.style.display = "block";
+    z.style.display = "block";
+  }
+
+
+// start the timer
+//  Set our number counter to 30.
+  var number = 30;
+  var intervalId;
+
+  function run() {
+    clearInterval(intervalId);
+    intervalId = setInterval(decrement, 1000);
+  }
+  //  The decrement function.
+  function decrement() {
+    //  Decrease number by one.
+    number--;
+
+      //  Show the number in the #show-number tag.
+      $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
+      //  Once number hits zero...
+      if (number === 0) {
+        //  ...run the stop function.
+        stop();
+        //  Alert the user that time is up.
+        alert("Time Up!");
+      }
+    }
+
+  //  The stop function
+  function stop() {
+    //  Clears our intervalId
+    //  We just pass the name of the interval
+    //  to the clearInterval function.
+    clearInterval(intervalId);
+  }
+
+  run();
+
+}
 
 
 const quizContainer = document.getElementById('quiz');
