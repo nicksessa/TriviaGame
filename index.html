@@ -100,7 +100,7 @@ button:hover{
 
 <div id="container">
   <div id="centered">
-    <div id="theTimer"><h1>Time Remaining: </h1></div>
+    <div id="theTimer"><h1>Time Remaining: 30</h1></div>
     <div id="quiz"></div>
     <button id="submit">Submit Quiz</button>
     <div id="results"></div>
@@ -110,6 +110,46 @@ button:hover{
 
 
 <script type="text/javascript">
+
+
+
+// start the timer
+//  Set our number counter to 30.
+var number = 30;
+var intervalId;
+
+function run() {
+  clearInterval(intervalId);
+  intervalId = setInterval(decrement, 1000);
+}
+
+//  The decrement function.
+function decrement() {
+  //  Decrease number by one.
+  number--;
+
+  //  Show the number in the #show-number tag.
+  $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
+  //  Once number hits zero...
+  if (number === 0) {
+    //  ...run the stop function.
+    stop();
+    //  Alert the user that time is up.
+    alert("Time is Up!");
+  }
+}
+
+//  The stop function
+function stop() {
+  //  Clears our intervalId
+  //  We just pass the name of the interval
+  //  to the clearInterval function.
+  clearInterval(intervalId);
+  // Show the results when the timer ends
+  showResults();
+}
+
+
 
 
 function startGame() {
@@ -128,38 +168,7 @@ function startGame() {
   }
 
 
-// start the timer
-//  Set our number counter to 30.
-  var number = 30;
-  var intervalId;
 
-  function run() {
-    clearInterval(intervalId);
-    intervalId = setInterval(decrement, 1000);
-  }
-  //  The decrement function.
-  function decrement() {
-    //  Decrease number by one.
-    number--;
-
-      //  Show the number in the #show-number tag.
-      $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
-      //  Once number hits zero...
-      if (number === 0) {
-        //  ...run the stop function.
-        stop();
-        //  Alert the user that time is up.
-        alert("Time Up!");
-      }
-    }
-
-  //  The stop function
-  function stop() {
-    //  Clears our intervalId
-    //  We just pass the name of the interval
-    //  to the clearInterval function.
-    clearInterval(intervalId);
-  }
 
   run();
 
@@ -317,8 +326,8 @@ function showResults(){
 console.log("qName = " + qName)
 
 
-
-var radiosNo = document.getElementsByName(qName);
+// I like this for loop more than the messing around with the querySelector thing above
+  var radiosNo = document.getElementsByName(qName);
 
     for (var i = 0, length = radiosNo.length; i < length; i++) {
       if (radiosNo[i].checked) {
@@ -359,11 +368,12 @@ var radiosNo = document.getElementsByName(qName);
 
 
 // show number of correct answers out of total
-resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+resultsContainer.innerHTML = `Results: ${numCorrect} out of ${myQuestions.length}`;
 
   });
 
-
+// stop the timer
+stop();
 
 
 };
