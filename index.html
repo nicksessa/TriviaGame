@@ -1,417 +1,423 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="UTF-8">
-<title>Star Wars Trivia Game</title>
+  <meta charset="UTF-8">
+  <title>Star Wars Trivia Game</title>
 
-<link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<style>
-body{
-    font-size: 20px;
-    font-family: sans-serif;
-    color: #333;
-  font-weight: 300;
-  text-align: left;
-  background-color: #f8f6f0;
-}
-h1{
-  text-align: center;
-  font-weight: 300;
-  margin: 0px;
-  padding: 10px;
-  font-size: 20px;
-  background-color: #444;
-  color: #fff;
-}
-.question{
-    font-weight: 600;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-.answers {
-  margin-bottom: 20px;
-  margin-left: 40px;
-  text-align: left;
-  font-size: 15px;
-  display: inline-block;
-}
-.answers label{
-  display: block;
-  margin-bottom: 10px;
-}
+  <style>
+    body {
+      font-size: 20px;
+      font-family: sans-serif;
+      color: #333;
+      font-weight: 300;
+      text-align: left;
+      background-color: #f8f6f0;
+    }
 
-button{
-  font-family: 'Work Sans', sans-serif;
-    font-size: 22px;
-    background-color: #279;
-    color: #fff;
-    border: 0px;
-    border-radius: 3px;
-    padding: 20px;
-    cursor: pointer;
-    margin-bottom: 20px;
-//display: inline-block;
-//float: left;
-box-shadow: 4px 4px 2px gray, -1px 0px 5px gray;
-}
-button:hover{
-    background-color: #38a;
-}
+    h1 {
+      text-align: center;
+      font-weight: 300;
+      margin: 0px;
+      padding: 10px;
+      font-size: 20px;
+      background-color: #444;
+      color: #fff;
+    }
 
-#container{
-  position: relative;
-  height: 200px;
-  margin-top: 40px;
-  display: none;
-}
+    .question {
+      font-weight: 600;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
 
-#myStart {
-  margin-top: 20%;
-  margin-left: 45%;
-}
+    .answers {
+      margin-bottom: 20px;
+      margin-left: 40px;
+      text-align: left;
+      font-size: 15px;
+      display: inline-block;
+    }
 
-#centered {
-    margin: 20px auto;
-    width: 900px;
-    /*border-style: solid;
+    .answers label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    button {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 22px;
+      background-color: #279;
+      color: #fff;
+      border: 0px;
+      border-radius: 3px;
+      padding: 20px;
+      cursor: pointer;
+      margin-bottom: 20px;
+/*       display: inline-block;
+      float: left; */
+      box-shadow: 4px 4px 2px gray, -1px 0px 5px gray;
+    }
+
+    button:hover {
+      background-color: #38a;
+    }
+
+    #container {
+      position: relative;
+      height: 200px;
+      margin-top: 40px;
+      display: none;
+    }
+
+    #myStart {
+      margin-top: 20%;
+      margin-left: 45%;
+    }
+
+    #centered {
+      margin: 20px auto;
+      width: 900px;
+      /*border-style: solid;
     border-color: green;
     border-width: 2px;*/
-    //background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/vintage-concrete.png");
-    border-radius: 4px;
-    padding: 20px;
-    box-shadow: 10px 10px 5px black, -1px 0px 10px black;
-  display: none;
-}
+      /*background-image: url("https://www.toptal.com/designers/subtlepatterns/patterns/vintage-concrete.png");*/
+      border-radius: 4px;
+      padding: 20px;
+      box-shadow: 10px 10px 5px black, -1px 0px 10px black;
+      display: none;
+    }
 
-#submit {
-  //float: left;
+    #submit {
+      /*float: left;*/
 
-}
+    }
 
-#reset {
+    #reset {
 
 
-  //margin-left: 40px;
-  margin-right: 20px;
-  display: none;
-}
-
-</style>
+      /*margin-left: 40px;*/
+      margin-right: 20px;
+      display: none;
+    }
+  </style>
 
 
 
 </head>
+
 <body>
 
-<h1>Star Wars Trivia</h1>
+  <h1>Star Wars Trivia</h1>
 
 
-<div id="myStart">
-  <button class="button" onclick="startGame()">Start</button>
-</div>
+  <div id="myStart">
+    <button class="button" onclick="startGame()">Start</button>
+  </div>
 
-<div id="container">
-  <div id="centered">
-    <div id="theTimer"><h1>Time Remaining: 30</h1></div>
-    <div id="quiz">    </div>
+  <div id="container">
+    <div id="centered">
+      <div id="theTimer">
+        <h1>Time Remaining: 30</h1>
+      </div>
+      <div id="quiz"> </div>
       <button id="submit">Submit Quiz</button>
       <button id="reset">Try Again?</button>
       <div id="results"></div>
 
+    </div>
   </div>
-</div>
 
 
 
-<script type="text/javascript">
-
-
-
-
-//  Set our number counter to 30 for the timer.
-var number = 30;
-var intervalId;
-
-function runTimer() {
-  clearInterval(intervalId);
-  intervalId = setInterval(decrement, 1000);
-}
-
-function decrement() {
-  //  Decrease number by one.
-  number--;
-
-  $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
-
-  if (number === 0) {
-    stopTimer();
-    alert("Time is Up!");
-    showResults();
-  }
-}
-
-function stopTimer() {
-  //  Clears our intervalId
-  //  We just pass the name of the interval to the clearInterval function.
-  clearInterval(intervalId);
- 
-}
+  <script type="text/javascript">
 
 
 
 
-function startGame() {
-  var x = document.getElementById("myStart");
-  var y = document.getElementById("container");
-  var z = document.getElementById("centered");
-  var r = document.getElementById("reset");
-  
-  // I'm keeping this if statement in case I try to reset the game with a button.
+    //  Set our number counter to 30 for the timer.
+    var number = 30;
+    var intervalId;
 
-  if (x.style.display === "none") {
-    x.style.display = "block";
-    y.style.display = "none";
-    z.style.display = "none";
-    r.style.display = "none";
-
-
-    submit.disabled = false;
-    submit.style.backgroundColor = "#279";
-    submit.style.color = "#fff";
-
-  } else {
-    x.style.display = "none";
-    y.style.display = "block";
-    z.style.display = "block";
-  }
-
-  runTimer();
-
-}
-
-
-const quizContainer = document.getElementById('quiz');
-const resultsContainer = document.getElementById('results');
-const submitButton = document.getElementById('submit');
-const resetButton = document.getElementById('reset');
-
-
-// on submit, show results
-submitButton.addEventListener('click', showResults);
-
-// on reset, build the page
-resetButton.addEventListener('click', resetPage);
-
-
-function resetPage() {
-  number = 30;
-
-  // loop through the questions to get the question number
-  // then use that to build the questions string, ie: question0  question1, question2
-  // then use that string to search for those named elements
-  // then use those elements to set the color of their parent elements, which should be labels
-
-  myQuestions.forEach((currentQuestion, questionNumber) => {
-    var qName = "question" + questionNumber
-    var radiosNo = document.getElementsByName(qName);
-
-    for (var i = 0, length = radiosNo.length; i < length; i++) {
-      	radiosNo[i].parentElement.style.color = "black";
-        radiosNo[i].checked = false;
+    function runTimer() {
+      clearInterval(intervalId);
+      intervalId = setInterval(decrement, 1000);
     }
-  });
 
-  resultsContainer.innerHTML = "";
+    function decrement() {
+      //  Decrease number by one.
+      number--;
 
+      $("#theTimer").html("<h1>Time Remaining: " + number + "</h1>");
 
+      if (number === 0) {
+        stopTimer();
+        alert("Time is Up!");
+        showResults();
+      }
+    }
 
-  var x = document.getElementById("myStart");
-  var y = document.getElementById("container");
-  var z = document.getElementById("centered");
-  var r = document.getElementById("reset");
+    function stopTimer() {
+      //  Clears our intervalId
+      //  We just pass the name of the interval to the clearInterval function.
+      clearInterval(intervalId);
 
-    x.style.display = "block";
-    y.style.display = "none";
-    z.style.display = "none";
-    r.style.display = "none";
-
-
-    submit.disabled = false;
-    submit.style.backgroundColor = "#279";
-    submit.style.color = "#fff";
-
-
+    }
 
 
 
 
+    function startGame() {
+      var x = document.getElementById("myStart");
+      var y = document.getElementById("container");
+      var z = document.getElementById("centered");
+      var r = document.getElementById("reset");
 
-  //startGame();
-}
+      // I'm keeping this if statement in case I try to reset the game with a button.
 
-// Build an object of objects (and data) to hold the questions and answers
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+        z.style.display = "none";
+        r.style.display = "none";
 
-const myQuestions = [
-  {
-    question: "Who shot first?",
-    answers: {
-      a: "Greedo",
-      b: "Luke",
-      c: "Han"
-    },
-    correctAnswer: "c"
-  },
-  {
-    question: "What is the name of Han Solo's Ship?",
-    answers: {
-      a: "Slave 1",
-      b: "The Enterprise",
-      c: "Millennium Falcon"
-    },
-    correctAnswer: "c"
-  },
-  {
-    question: "What is the name/type of Boba Fette's armor?",
-    answers: {
-      a: "Mithral",
-      b: "Ithorian",
-      c: "Brigandine",
-      d: "Mandalorian"
-    },
-    correctAnswer: "d"
-  }
-];
 
-// this function builds the quiz
+        submit.disabled = false;
+        submit.style.backgroundColor = "#279";
+        submit.style.color = "#fff";
 
-function buildQuiz(){
+      } else {
+        x.style.display = "none";
+        y.style.display = "block";
+        z.style.display = "block";
+      }
 
-    const output = [];
-  
-  // loop through all the questions (objects) in the myQuestions object
-  myQuestions.forEach(myFunction);
+      runTimer();
 
-function myFunction(item, index) {
+    }
 
-  // this array is used to store all the answers in html format
-  const answers = [];
 
-  // 1. Loop through all the answers in the current question (item).
-  // 2. Put each radio element within a label.
-  // 3. Each radio element needs a unique name.
-  //    We get a unique name by adding the index to the name like so:  name="question${index}"
-  // 4. The value or string in the radio button is the letter of the answer. We'll use this value later to see if the user selected the correct answer.
-  // x = the answer letter  (could call x 'letter' instead to be more readable.
-  //item.answers[x]  item is the object.  answers[x] is each answer in the item object.  x is the index of the value in the answers object.
-  
-  for (x in item.answers) {
+    const quizContainer = document.getElementById('quiz');
+    const resultsContainer = document.getElementById('results');
+    const submitButton = document.getElementById('submit');
+    const resetButton = document.getElementById('reset');
 
-  	// add an HTML radio button
-        answers.push(
-         `<label>
+
+    // on submit, show results
+    submitButton.addEventListener('click', showResults);
+
+    // on reset, build the page
+    resetButton.addEventListener('click', resetPage);
+
+
+    function resetPage() {
+      number = 30;
+
+      // loop through the questions to get the question number
+      // then use that to build the questions string, ie: question0  question1, question2
+      // then use that string to search for those named elements
+      // then use those elements to set the color of their parent elements, which should be labels
+
+      myQuestions.forEach((currentQuestion, questionNumber) => {
+        var qName = "question" + questionNumber
+        var radiosNo = document.getElementsByName(qName);
+
+        for (var i = 0, length = radiosNo.length; i < length; i++) {
+          radiosNo[i].parentElement.style.color = "#333";
+          radiosNo[i].checked = false;
+        }
+      });
+
+      resultsContainer.innerHTML = "";
+
+
+
+      var x = document.getElementById("myStart");
+      var y = document.getElementById("container");
+      var z = document.getElementById("centered");
+      var r = document.getElementById("reset");
+
+      x.style.display = "block";
+      y.style.display = "none";
+      z.style.display = "none";
+      r.style.display = "none";
+
+
+      submit.disabled = false;
+      submit.style.backgroundColor = "#279";
+      submit.style.color = "#fff";
+
+
+
+
+
+
+
+      //startGame();
+    }
+
+    // Build an object of objects (and data) to hold the questions and answers
+
+    const myQuestions = [
+      {
+        question: "Who shot first?",
+        answers: {
+          a: "Greedo",
+          b: "Luke",
+          c: "Han"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "What is the name of Han Solo's Ship?",
+        answers: {
+          a: "Slave 1",
+          b: "The Enterprise",
+          c: "Millennium Falcon"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "What is the name/type of Boba Fette's armor?",
+        answers: {
+          a: "Mithral",
+          b: "Ithorian",
+          c: "Brigandine",
+          d: "Mandalorian"
+        },
+        correctAnswer: "d"
+      }
+    ];
+
+    // this function builds the quiz
+
+    function buildQuiz() {
+
+      const output = [];
+
+      // loop through all the questions (objects) in the myQuestions object
+      myQuestions.forEach(myFunction);
+
+      function myFunction(item, index) {
+
+        // this array is used to store all the answers in html format
+        const answers = [];
+
+        // 1. Loop through all the answers in the current question (item).
+        // 2. Put each radio element within a label.
+        // 3. Each radio element needs a unique name.
+        //    We get a unique name by adding the index to the name like so:  name="question${index}"
+        // 4. The value or string in the radio button is the letter of the answer. We'll use this value later to see if the user selected the correct answer.
+        // x = the answer letter  (could call x 'letter' instead to be more readable.
+        //item.answers[x]  item is the object.  answers[x] is each answer in the item object.  x is the index of the value in the answers object.
+
+        for (x in item.answers) {
+
+          // add an HTML radio button
+          answers.push(
+            `<label>
           <input type="radio" name="question${index}" value="${x}">
           ${x}) 
           ${item.answers[x]}
           </label>`
-        );
-  }
+          );
+        }
 
-// Now add this question and its answers to the output.
-// item.question is the current object (item) and question is the value or label or key in the object, which gives us the text of the question. 
-// (notice that this data is stored in a literal using the back tick)
-// answers.join is the text of the answers and the join turns it all into a string.  Otherwise, answers is an array and it wouldn't work.  We'd have to loop through the array to get the text, which would work but would take more coding.
+        // Now add this question and its answers to the output.
+        // item.question is the current object (item) and question is the value or label or key in the object, which gives us the text of the question. 
+        // (notice that this data is stored in a literal using the back tick)
+        // answers.join is the text of the answers and the join turns it all into a string.  Otherwise, answers is an array and it wouldn't work.  We'd have to loop through the array to get the text, which would work but would take more coding.
 
-      output.push(
-        `<div class="question"> ${item.question} </div>
+        output.push(
+          `<div class="question"> ${item.question} </div>
         <div class="answers"> ${answers.join('')} </div>`
-      );
+        );
 
-quizContainer.innerHTML = output.join('');
+        quizContainer.innerHTML = output.join('');
 
-  //document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
-}
-
-
-}
+        //document.getElementById("demo").innerHTML += index + ":" + item + "<br>"; 
+      }
 
 
-
-function showResults(){
-  // Get all of the answers and store them.
-  // We use querySelectorAll to get all the div elements of class 'answers'.
-  // This creates an array.
-  // We can't use the same method above because the buildQuiz function only loops through the myQuestion object.
-  // We have to instead loop through the elements on the screen to find out which options the user selected.
-
-  const answerContainers = quizContainer.querySelectorAll('.answers');
-
-  for (i = 0; i < answerContainers.length; i++) {
-    //answerContainers[i].style.backgroundColor = "red";
-    // this doesn't work --> console.log("answer: " + answerContainers[i])
-  }
-
-  // Next, create a counter for the correct answers
-  let numCorrect = 0;
-
-  // Now for the heavy lifting. 
-  // We have to loop through the questions in the myQuestions object.  For each question in the object, 
-  //   find the corresponding answer block.  For instance, the first question corresponds to the first 
-  //   set of answers that we conviently put in the answerContainers array.
-
-  myQuestions.forEach((currentQuestion, questionNumber) => {
-    // there are three questions so this will loop three times
-
-    // To find the answer the user selected load the answerContainer[question number].
-    //  In other words, get the <div> that is the container of the radio buttons.
-
-    const answerContainer = answerContainers[questionNumber];
-
-// it's a div and that's why we can style it if we wanted to:
-//answerContainer.style.backgroundColor = "red";
+    }
 
 
 
- 
-    // Next, we have to find out which answer was checked in that array
-    // We are looking for the following string with the ':checked' pseudoclass:
+    function showResults() {
+      // Get all of the answers and store them.
+      // We use querySelectorAll to get all the div elements of class 'answers'.
+      // This creates an array.
+      // We can't use the same method above because the buildQuiz function only loops through the myQuestion object.
+      // We have to instead loop through the elements on the screen to find out which options the user selected.
 
-    const selector = `input[name=question${questionNumber}]:checked`;
+      const answerContainers = quizContainer.querySelectorAll('.answers');
 
+      for (i = 0; i < answerContainers.length; i++) {
+        //answerContainers[i].style.backgroundColor = "red";
+        // this doesn't work --> console.log("answer: " + answerContainers[i])
+      }
 
-    // This bit of magic uses the text in the selector above to find a match in the 
-    // answerContainer, which is a div.
+      // Next, create a counter for the correct answers
+      let numCorrect = 0;
 
-    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
-    //console.log("user selected: " + userAnswer )
+      // Now for the heavy lifting. 
+      // We have to loop through the questions in the myQuestions object.  For each question in the object, 
+      //   find the corresponding answer block.  For instance, the first question corresponds to the first 
+      //   set of answers that we conviently put in the answerContainers array.
 
+      myQuestions.forEach((currentQuestion, questionNumber) => {
+        // there are three questions so this will loop three times
 
+        // To find the answer the user selected load the answerContainer[question number].
+        //  In other words, get the <div> that is the container of the radio buttons.
 
-	var qName = "question" + questionNumber
-console.log("qName = " + qName)
+        const answerContainer = answerContainers[questionNumber];
 
-
-// I like this for loop more than the messing around with the querySelector thing above
-  var radiosNo = document.getElementsByName(qName);
-
-    for (var i = 0, length = radiosNo.length; i < length; i++) {
-      if (radiosNo[i].checked) {
-	  // do something with radiosNo
-		//var answerValue = Number(radiosNo[i].value);
-		var answerX = radiosNo[i].value
-		console.log("user selected: " + answerX );
-		if (answerX == currentQuestion.correctAnswer){
-			radiosNo[i].parentElement.style.color = "lightgreen";
-		} else {
-			radiosNo[i].parentElement.style.color = "red";
-		}
-	  }
-	}
+        // it's a div and that's why we can style it if we wanted to:
+        //answerContainer.style.backgroundColor = "red";
 
 
+
+
+        // Next, we have to find out which answer was checked in that array
+        // We are looking for the following string with the ':checked' pseudoclass:
+
+        const selector = `input[name=question${questionNumber}]:checked`;
+
+
+        // This bit of magic uses the text in the selector above to find a match in the 
+        // answerContainer, which is a div.
+
+        const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+        //console.log("user selected: " + userAnswer )
+
+
+
+        var qName = "question" + questionNumber
+        console.log("qName = " + qName)
+
+
+        // I like this for loop more than the messing around with the querySelector thing above
+        var radiosNo = document.getElementsByName(qName);
+
+        for (var i = 0, length = radiosNo.length; i < length; i++) {
+          if (radiosNo[i].checked) {
+            // do something with radiosNo
+            //var answerValue = Number(radiosNo[i].value);
+            var answerX = radiosNo[i].value
+            console.log("user selected: " + answerX);
+            if (answerX == currentQuestion.correctAnswer) {
+              radiosNo[i].parentElement.style.color = "lightgreen";
+            } else {
+              radiosNo[i].parentElement.style.color = "red";
+            }
+          }
+        }
 
 
 
@@ -419,48 +425,51 @@ console.log("qName = " + qName)
 
 
 
- // if answer is correct
-  if(userAnswer===currentQuestion.correctAnswer){
-    // add to the number of correct answers
-    numCorrect++;
-
-    // color the answers green
-    //answerContainers[questionNumber].style.color = 'lightgreen';
-    //coffee[i].parentElement.style.color = "blue";
-  }
-  // if answer is wrong or blank
-  else{
-    // color the answers red
-    //answerContainers[questionNumber].style.color = 'red';
-  }
 
 
-// show number of correct answers out of total
-resultsContainer.innerHTML = `Results: ${numCorrect} out of ${myQuestions.length}`;
+        // if answer is correct
+        if (userAnswer === currentQuestion.correctAnswer) {
+          // add to the number of correct answers
+          numCorrect++;
 
-  });
-
-// stop the timer
-stopTimer();
-
-// disable the submit button
-submit.disabled = true;
-submit.style.backgroundColor = "#38a";
-submit.style.color = "lightgray";
-
-var x = document.getElementById("reset");
-x.style.display = "block";
-
-};
+          // color the answers green
+          //answerContainers[questionNumber].style.color = 'lightgreen';
+          //coffee[i].parentElement.style.color = "blue";
+        }
+        // if answer is wrong or blank
+        else {
+          // color the answers red
+          //answerContainers[questionNumber].style.color = 'red';
+        }
 
 
+        // show number of correct answers out of total
+        resultsContainer.innerHTML = `Results: ${numCorrect} out of ${myQuestions.length}`;
+
+      });
+
+      // stop the timer
+      stopTimer();
+
+      // disable the submit button
+      submit.disabled = true;
+      submit.style.backgroundColor = "#38a";
+      submit.style.color = "lightgray";
+
+      var x = document.getElementById("reset");
+      x.style.display = "block";
+
+    };
 
 
-// display quiz
-buildQuiz();
 
 
-</script>
+    // display quiz
+    buildQuiz();
+
+
+  </script>
 
 </body>
+
 </html>
